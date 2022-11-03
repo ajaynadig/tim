@@ -1,6 +1,5 @@
 
-simulation_params = data.frame(effsize_mean = 0,
-                               effsize_sd = seq(0.2,2,length.out = 10))
+effsize_sd = as.numeric(commandArgs(trailingOnly=TRUE)[1])
 
 simulate_infer_poisson = function(effsize_sd){
   print(effsize_sd)
@@ -11,6 +10,7 @@ simulate_infer_poisson = function(effsize_sd){
 
 }
 
+inferred_effsize_sd = simulate_infer_poisson(as.numeric(commandArgs(trailingOnly=TRUE)[1]))
 
-inferred_effsize_sd = sapply(seq(0.5,2,length.out = 10),
-                             simulate_infer_poisson)
+write.table(inferred_effsize_sd, paste0("/broad/oconnor/ajay/tim/usage/poisson_sim_output/",commandArgs(trailingOnly=TRUE)[1],".txt"),
+            row.names = FALSE, col.names = FALSE, quote = FALSE)
