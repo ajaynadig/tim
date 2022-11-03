@@ -83,7 +83,7 @@ test_that("Intercepts follow Log Normal distribution", {
   expect_lte(var(log(test_run$intercepts)), 0.1^2 + (0.1^2)*0.1)
 })
 
-test_that("Per-gene count means are correlated with distribution expectation", {
+test_that("Per-gene count means are correlated with NB distribution expectation", {
   count_means_0 = colMeans(test_run$counts[test_run$condition == 0,])
   expected_means_0 = (test_run$probs * (2^(test_run$effsizes*0 + test_run$intercepts)))/(1 - test_run$probs)
 
